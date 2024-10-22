@@ -3,8 +3,10 @@ import {Label} from "@/components/ui/label";
 import DatePicker from "@/components/DatePicker";
 import {Button} from "@/components/ui/button";
 import LoginWithGoogle from "@/components/LoginWithGoogle";
+import useLoginStore from "@/redux/loginStore";
 
 const App = () => {
+  const {isAuthenticated, accessToken} = useLoginStore();
   return (
     <div className="p-8 flex flex-col items-center justify-center bg-accent h-screen">
       <div className="w-[720px] flex flex-col justify-center">
