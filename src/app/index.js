@@ -4,14 +4,32 @@ import DatePicker from "@/components/DatePicker";
 import {Button} from "@/components/ui/button";
 import LoginWithGoogle from "@/components/LoginWithGoogle";
 import useLoginStore from "@/redux/loginStore";
+import useUserStore from "@/redux/userStore";
+import useFetchUser from "@/hooks/useFetchUser";
+import Events from "@/components/Events";
+
 
 const App = () => {
-  const {isAuthenticated, accessToken} = useLoginStore();
+  const {isAuthenticated} = useLoginStore();
+  const {name, email, picture} = useUserStore();
+
+  useFetchUser()
+
   return (
-    <div className="p-8 flex flex-col items-center justify-center bg-accent h-screen">
-      <div className="w-[720px] flex flex-col justify-center">
-        <div className="mb-8 self-end">
-          <LoginWithGoogle/>
+    <div className="p-8 flex flex-col items-center bg-accent h-screen pt-20">
+      <div className="w-[720px] flex flex-col justify-space-between">
+        <div className="flex flex-col mb-8 w-full">
+          <div className='self-end'>
+            {
+              isAuthenticated
+                ? <div className="p-3 border-2 rounded-lg	">
+                  <Label className="mb-4 font-semibold text-base">{name}</Label>
+                  <br/>
+                  <Label className="mb-4 font-medium text-base">{email}</Label>
+                </div>
+                : <LoginWithGoogle/>
+            }
+          </div>
         </div>
 
         <div className="flex flex-row justify-between w-full">
@@ -22,14 +40,7 @@ const App = () => {
           <Button variant="outline">Create Event</Button>
         </div>
 
-        <div className="mt-16 flex flex-col w-full">
-          <Label className="mb-4">{`Today's Event`}</Label>
-          {['9 AM to 10AM - Meeting', '11 AM to 2PM - Lunch', '3 PM to 5 PM - Code'].map((e) => (
-            <div key={e} className="border-b border-gray-400 py-4">
-              <Label className="mb-4">{e}</Label>
-            </div>
-          ))}
-        </div>
+        <Events/>
       </div>
     </div>
   );

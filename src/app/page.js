@@ -5,6 +5,7 @@ import App from "@/app/index";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {clientId} from "@/lib/constants";
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient();
 
@@ -13,5 +14,6 @@ export default function () {
     <GoogleOAuthProvider clientId={clientId}>
       <App/>
     </GoogleOAuthProvider>
+    <ReactQueryDevtools initialIsOpen={false}/>
   </QueryClientProvider>
 }

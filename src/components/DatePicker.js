@@ -12,12 +12,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import useCalendarStore from "@/redux/calendarStore";
+import {useState} from "react";
 
 export default function DatePicker() {
-  const [date, setDate] = React.useState()
+  const {date, setDate} = useCalendarStore()
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={() => setOpen(!isOpen)}>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
@@ -34,7 +37,10 @@ export default function DatePicker() {
         <Calendar
           mode="single"
           selected={date}
-          onSelect={setDate}
+          onSelect={(val) => {
+            setDate(val)
+            setOpen(false)
+          }}
           initialFocus
         />
       </PopoverContent>

@@ -3,15 +3,15 @@ import {persist} from 'zustand/middleware';
 
 
 const useUserStore = create(
-  (set) => ({
-    name: null,
-    email: null,
-    picture: null,
-    setUser: ({user, email, picture}) => set((state) => ({user, email, picture}))
-  }),
-  {
-    name: 'user-store',
-  }
+  persist((set) => ({
+      name: '',
+      email: '',
+      picture: '',
+      setUser: ({name, email, picture}) => set(() => ({name, email, picture}))
+    }),
+    {
+      name: 'user-store',
+    })
 );
 
 export default useUserStore
