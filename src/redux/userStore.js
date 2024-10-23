@@ -10,7 +10,7 @@ const useUserStore = create(
       setUser: ({name, email, picture}) => set(() => ({name, email, picture}))
     }),
     {
-      name: 'user-store',
+      name: 'user-storage',
     })
 );
 

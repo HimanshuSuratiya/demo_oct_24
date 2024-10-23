@@ -46,9 +46,10 @@ const Events = (props) => {
   }
 
   return <div className="mt-16 flex flex-col w-full">
-    <Label className="mb-4">{`Today's Event`}</Label>
-    {data?.data?.items.map((event) => (
-      <div key={event?.start?.dateTime} className="border-b border-gray-400 py-4 justify-between flex flex-row">
+    <Label className="mb-8">{`Today's Event`}</Label>
+    {data?.data?.items.map((event, index) => (
+      <div key={event?.start?.dateTime} className="border-b border-gray-400 py-4 justify-between flex flex-row"
+           style={{borderTop: index === 0 ? '1px solid rgb(156, 163, 175)' : 'none'}}>
         <Label className="mb-4">{`${formatData(event?.start?.dateTime)} to ${formatData(event?.end?.dateTime)}`}</Label>
         <Label className="mb-4">{event?.summary}</Label>
       </div>

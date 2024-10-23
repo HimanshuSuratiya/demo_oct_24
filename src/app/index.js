@@ -39,8 +39,8 @@ const App = () => {
           </div>
           <Button variant="outline">Create Event</Button>
         </div>
-
-        <Events/>
+        {isAuthenticated ? <Events/> :
+          <Label className="w-full text-center mt-12 font-bold text-lg">{'Login to view events.'}</Label>}
       </div>
     </div>
   );
