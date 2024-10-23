@@ -8,10 +8,12 @@ import useFetchUser from "@/hooks/useFetchUser";
 import Events from "@/components/Events";
 import CreateEventForm from "@/components/CreateEventForm";
 import dayjs from "dayjs";
+import {Button} from "@/components/ui/button";
+import {clearUser} from "@/api/axiosInstance";
 
 
 const App = () => {
-  const {isAuthenticated} = useLoginStore();
+  const {isAuthenticated, clearLogin} = useLoginStore();
   const {name, email} = useUserStore();
   const [eventsDate, setEventsDate] = useState(dayjs().format('YYYY-MM-DD'));
 
@@ -24,10 +26,13 @@ const App = () => {
           <div className='self-end'>
             {
               isAuthenticated
-                ? <div className="p-3 border-2 rounded-lg	">
-                  <Label className="mb-4 font-semibold text-base">{name}</Label>
-                  <br/>
-                  <Label className="mb-4 font-medium text-base">{email}</Label>
+                ? <div className="flex flex-col">
+                  <div className="p-3 border-2 rounded-lg ">
+                    <Label className="mb-4 font-semibold text-base">{name}</Label>
+                    <br/>
+                    <Label className="mb-4 font-medium text-base">{email}</Label>
+                  </div>
+                  <Button className="my-2 self-end" onClick={clearLogin} variant="outline">Logout</Button>
                 </div>
                 : <LoginWithGoogle/>
             }

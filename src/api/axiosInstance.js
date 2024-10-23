@@ -19,11 +19,16 @@ axiosInstance.interceptors.response.use(
     const {response} = error;
 
     if (response && response.status === 401) {
-      localStorage.removeItem('auth-storage');
-      localStorage.removeItem('user-storage');
+      clearUser()
     }
 
     return Promise.reject(error);
   }
 );
 export default axiosInstance;
+
+
+export const clearUser = () => {
+  localStorage.removeItem('auth-storage');
+  localStorage.removeItem('user-storage');
+}

@@ -9,6 +9,7 @@ const useLoginStore = create(
       accessToken: null,
       toggleAuth: () => set((state) => ({isAuthenticated: !state.isAuthenticated})),
       setAccessToken: (token) => set(() => ({accessToken: token})),
+      clearLogin: () => set(() => ({isAuthenticated: false, accessToken: null})),
     }),
     {
       name: 'auth-storage',
