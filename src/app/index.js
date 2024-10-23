@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Label} from "@/components/ui/label";
 import DatePicker from "@/components/DatePicker";
-import {Button} from "@/components/ui/button";
 import LoginWithGoogle from "@/components/LoginWithGoogle";
 import useLoginStore from "@/redux/loginStore";
 import useUserStore from "@/redux/userStore";
 import useFetchUser from "@/hooks/useFetchUser";
 import Events from "@/components/Events";
+import CreateEventForm from "@/components/CreateEventForm";
+import dayjs from "dayjs";
 
 
 const App = () => {
   const {isAuthenticated} = useLoginStore();
-  const {name, email, picture} = useUserStore();
+  const {name, email} = useUserStore();
+  const [eventsDate, setEventsDate] = useState(dayjs().format('YYYY-MM-DD'));
 
   useFetchUser()
 
@@ -35,11 +37,11 @@ const App = () => {
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-col">
             <Label className="mb-4">Choose date</Label>
-            <DatePicker/>
+            <DatePicker setDate={setEventsDate}/>
           </div>
-          <Button variant="outline">Create Event</Button>
+          <CreateEventForm/>
         </div>
-        {isAuthenticated ? <Events/> :
+        {isAuthenticated ? <Events date={eventsDate}/> :
           <Label className="w-full text-center mt-12 font-bold text-lg">{'Login to view events.'}</Label>}
       </div>
     </div>
