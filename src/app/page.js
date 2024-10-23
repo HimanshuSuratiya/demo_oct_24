@@ -9,7 +9,7 @@ import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient();
 
-export default function () {
+export default function index() {
   return <QueryClientProvider client={queryClient}>
     <GoogleOAuthProvider clientId={clientId}>
       <App/>
