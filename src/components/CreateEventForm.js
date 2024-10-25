@@ -24,11 +24,11 @@ const CreateEventForm = (props) => {
       location: 'Delhi, India',
       description: values.description,
       start: {
-        dateTime: date.startDateAndTime.toISOString(),
+        dateTime: date.startDateAndTime?.toISOString(),
         timeZone: timeZone
       },
       end: {
-        dateTime: date.endDateAndTime.toISOString(),
+        dateTime: date.endDateAndTime?.toISOString(),
         timeZone: timeZone
       },
       attendees: [
