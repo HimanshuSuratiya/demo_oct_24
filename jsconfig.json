@@ -1,7 +1,21 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   }
 }
+// {
+//   "compilerOptions": {
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "baseUrl": "./",
+//     "paths": {
+//       "@/components/*": [
+//         "components/*"
+//       ]
+//     }
+//   }
+// }
