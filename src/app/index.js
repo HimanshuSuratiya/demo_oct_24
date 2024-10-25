@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Label} from "@/components/ui/label";
+import React, { useState } from 'react';
+import { Label } from "@/components/ui/label";
 import DatePicker from "@/components/DatePicker";
 import LoginWithGoogle from "@/components/LoginWithGoogle";
 import useLoginStore from "@/redux/loginStore";
@@ -8,14 +8,14 @@ import useFetchUser from "@/hooks/useFetchUser";
 import Events from "@/components/Events";
 import CreateEventForm from "@/components/CreateEventForm";
 import dayjs from "dayjs";
-import {Button} from "@/components/ui/button";
-import {clearUser} from "@/api/axiosInstance";
+import { Button } from "@/components/ui/button";
+import { clearUser } from "@/api/axiosInstance";
 
 
 const App = () => {
-  const {isAuthenticated, clearLogin} = useLoginStore();
-  const {name, email} = useUserStore();
-  const [eventsDate, setEventsDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const { isAuthenticated, clearLogin } = useLoginStore();
+  const { name, email } = useUserStore();
+  const [eventsDate, setEventsDate] = useState(dayjs().toDate());
 
   useFetchUser()
 
@@ -29,12 +29,12 @@ const App = () => {
                 ? <div className="flex flex-col">
                   <div className="p-3 border-2 rounded-lg ">
                     <Label className="mb-4 font-semibold text-base">{name}</Label>
-                    <br/>
+                    <br />
                     <Label className="mb-4 font-medium text-base">{email}</Label>
                   </div>
                   <Button className="my-2 self-end" onClick={clearLogin} variant="outline">Logout</Button>
                 </div>
-                : <LoginWithGoogle/>
+                : <LoginWithGoogle />
             }
           </div>
         </div>
@@ -42,11 +42,11 @@ const App = () => {
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-col">
             <Label className="mb-4">Choose date</Label>
-            <DatePicker setDate={setEventsDate}/>
+            <DatePicker setDate={setEventsDate} />
           </div>
-          <CreateEventForm/>
+          <CreateEventForm />
         </div>
-        {isAuthenticated ? <Events date={eventsDate}/> :
+        {isAuthenticated ? <Events date={eventsDate} /> :
           <Label className="w-full text-center mt-12 font-bold text-lg">{'Login to view events.'}</Label>}
       </div>
     </div>
